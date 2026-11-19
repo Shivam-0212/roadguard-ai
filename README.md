@@ -152,7 +152,8 @@ cd ..
 ```
 *Frontend runs on `http://localhost:5173`*
 
-For comprehensive setup details, consult [docs/setup.md](docs/setup.md).
+For comprehensive local setup details, consult [docs/setup.md](docs/setup.md).
+For live cloud deployment instructions (Vercel + Railway + Persistent Storage), consult [docs/deployment-guide.md](docs/deployment-guide.md).
 
 ---
 
@@ -195,6 +196,7 @@ cd frontend && npm run build && cd ..
 
 - **[ARCHITECTURE.md](ARCHITECTURE.md):** System architecture, data flow sequences, and database ER diagrams.
 - **[CHANGELOG.md](CHANGELOG.md):** Project release history and version notes.
+- **[docs/deployment-guide.md](docs/deployment-guide.md):** Complete live production deployment guide for Vercel, Railway, and SQLite persistent storage.
 - **[docs/setup.md](docs/setup.md):** Step-by-step installation, checkpoint verification, and troubleshooting.
 - **[docs/how-it-works.md](docs/how-it-works.md):** Detailed walkthrough of the image ingestion, YOLOv8 inference, and severity heuristics.
 - **[docs/user-guide.md](docs/user-guide.md):** Practical user manual for navigating the web application and exporting reports.

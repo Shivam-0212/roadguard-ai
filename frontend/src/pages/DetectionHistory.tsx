@@ -257,13 +257,13 @@ export const DetectionHistory: React.FC = () => {
                     <div className="rounded-xl overflow-hidden bg-black border border-slate-800 flex justify-center max-h-[360px]">
                       {sessionDetail.file_type === 'image' ? (
                         <img
-                          src={sessionDetail.annotated_file_url}
+                          src={api.getMediaUrl(sessionDetail.annotated_file_url)}
                           alt="Annotated Inspection"
                           className="max-h-[360px] w-auto object-contain"
                         />
                       ) : (
                         <video
-                          src={sessionDetail.annotated_file_url}
+                          src={api.getMediaUrl(sessionDetail.annotated_file_url)}
                           controls
                           className="max-h-[360px] w-auto"
                         />

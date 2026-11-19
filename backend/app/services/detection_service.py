@@ -58,18 +58,21 @@ class DetectionService:
         with open(upload_path, "wb") as f:
             f.write(contents)
 
-        # Run inference
+        # Run inference and rendering
         try:
             results = detector.predict_image(
                 upload_path,
                 conf_threshold=conf_threshold,
                 iou_threshold=iou_threshold
             )
+            # Draw and save annotated image
+            detector.render_annotations(upload_path, results["detections"], str(output_path))
         except Exception as e:
+            if upload_path.exists():
+                upload_path.unlink()
+            if output_path.exists():
+                output_path.unlink()
             raise HTTPException(status_code=500, detail=f"Inference error: {str(e)}")
-
-        # Draw and save annotated image
-        detector.render_annotations(upload_path, results["detections"], str(output_path))
 
         # Class counts
         detections = results["detections"]

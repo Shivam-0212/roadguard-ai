@@ -18,21 +18,40 @@ class Settings(BaseSettings):
     UPLOAD_DIR: str = os.getenv("UPLOAD_DIR", str(BASE_DIR / "uploads"))
     OUTPUT_DIR: str = os.getenv("OUTPUT_DIR", str(BASE_DIR / "outputs"))
     
+    # Server Host & Port (Railway / Cloud deployment assigns dynamic PORT)
+    HOST: str = os.getenv("HOST", "0.0.0.0")
+    PORT: int = int(os.getenv("PORT", "8000"))
+
     # Upload limits
-    MAX_IMAGE_SIZE_MB: int = 20
-    MAX_VIDEO_SIZE_MB: int = 100
+    MAX_IMAGE_SIZE_MB: int = int(os.getenv("MAX_IMAGE_SIZE_MB", "20"))
+    MAX_VIDEO_SIZE_MB: int = int(os.getenv("MAX_VIDEO_SIZE_MB", "100"))
     
     # Video inference settings
-    VIDEO_FRAME_SAMPLE_RATE: int = 5  # Process every 5th frame for fast local CPU inference
+    VIDEO_FRAME_SAMPLE_RATE: int = int(os.getenv("VIDEO_FRAME_SAMPLE_RATE", "5"))
     
     # CORS
-    CORS_ORIGINS: list = [
+    CORS_ORIGINS: list | str = [
         "http://localhost:5173",
         "http://localhost:3000",
         "http://127.0.0.1:5173",
         "http://127.0.0.1:3000",
         "*"
     ]
+
+    @property
+    def cors_origins_list(self) -> list:
+        if isinstance(self.CORS_ORIGINS, list):
+            return self.CORS_ORIGINS
+        if isinstance(self.CORS_ORIGINS, str):
+            return [origin.strip() for origin in self.CORS_ORIGINS.split(",") if origin.strip()]
+        return ["*"]
+
+    @property
+    def sync_database_url(self) -> str:
+        url = self.DATABASE_URL
+        if url.startswith("postgres://"):
+            url = url.replace("postgres://", "postgresql://", 1)
+        return url
 
     model_config = SettingsConfigDict(env_file=".env", extra="allow")
 

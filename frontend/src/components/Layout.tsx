@@ -208,7 +208,7 @@ export const Layout: React.FC = () => {
                 }`}
               ></span>
               <span className="text-slate-300">
-                {backendOnline ? 'Backend 8000' : 'Connecting...'}
+                {backendOnline ? 'Backend Online' : 'Connecting...'}
               </span>
             </div>
 

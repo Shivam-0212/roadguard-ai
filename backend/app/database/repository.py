@@ -1,4 +1,5 @@
 from typing import List, Optional, Tuple, Dict, Any
+from pathlib import Path
 from sqlalchemy.orm import Session
 from sqlalchemy import desc, func
 from backend.app.database.models import InspectionSession, DefectDetection
@@ -73,6 +74,15 @@ class InspectionRepository:
     def delete_session(self, session_id: str) -> bool:
         session = self.get_session(session_id)
         if session:
+            # Delete physical files from disk to prevent persistent volume saturation
+            for path_str in (session.original_file_path, session.annotated_file_path):
+                if path_str:
+                    try:
+                        p = Path(path_str)
+                        if p.exists() and p.is_file():
+                            p.unlink()
+                    except Exception:
+                        pass
             self.db.delete(session)
             self.db.commit()
             return True

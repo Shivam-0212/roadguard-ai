@@ -59,6 +59,8 @@ class VideoService:
         # OpenCV VideoCapture
         cap = cv2.VideoCapture(str(upload_path))
         if not cap.isOpened():
+            if upload_path.exists():
+                upload_path.unlink()
             raise HTTPException(status_code=400, detail="Could not open video file. Ensure valid video codec.")
 
         fps = cap.get(cv2.CAP_PROP_FPS) or 25.0
@@ -120,6 +122,12 @@ class VideoService:
                     out_writer.write(annotated_frame)
 
                 frame_idx += 1
+        except Exception as e:
+            if upload_path.exists():
+                upload_path.unlink()
+            if output_path.exists():
+                output_path.unlink()
+            raise HTTPException(status_code=500, detail=f"Video processing failed: {str(e)}")
         finally:
             cap.release()
             out_writer.release()

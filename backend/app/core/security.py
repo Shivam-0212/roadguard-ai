@@ -3,12 +3,13 @@ import re
 import uuid
 from pathlib import Path
 from fastapi import HTTPException, UploadFile
+from backend.app.config import settings
 
 ALLOWED_IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".bmp", ".webp"}
 ALLOWED_VIDEO_EXTENSIONS = {".mp4", ".avi", ".mov", ".mkv"}
 
-MAX_IMAGE_SIZE_BYTES = 20 * 1024 * 1024   # 20 MB
-MAX_VIDEO_SIZE_BYTES = 100 * 1024 * 1024  # 100 MB
+MAX_IMAGE_SIZE_BYTES = settings.MAX_IMAGE_SIZE_MB * 1024 * 1024
+MAX_VIDEO_SIZE_BYTES = settings.MAX_VIDEO_SIZE_MB * 1024 * 1024
 
 
 def sanitize_filename(filename: str) -> str:

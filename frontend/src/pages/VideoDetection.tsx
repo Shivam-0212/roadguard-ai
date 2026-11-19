@@ -187,7 +187,7 @@ export const VideoDetection: React.FC = () => {
             <div className="flex items-center justify-between">
               <h3 className="font-bold text-white text-base">Processed Output Video</h3>
               <a
-                href={result.annotated_video_url}
+                href={api.getMediaUrl(result.annotated_video_url)}
                 download={result.filename}
                 className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-bold transition-colors"
               >
@@ -198,7 +198,7 @@ export const VideoDetection: React.FC = () => {
 
             <div className="rounded-xl overflow-hidden bg-black border border-slate-800 flex justify-center max-h-[500px]">
               <video
-                src={result.annotated_video_url}
+                src={api.getMediaUrl(result.annotated_video_url)}
                 controls
                 className="max-h-[500px] w-auto"
               />

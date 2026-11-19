@@ -1,0 +1,43 @@
+# Version control
+.git
+.gitignore
+
+# Virtual environments & dependencies
+.venv
+venv
+env
+node_modules
+
+# Datasets and raw data (kept out of production container)
+archive
+input_data
+leakage_resistant_dataset
+processed_dataset
+runs
+roadguard-ai
+*.tar.gz
+
+# Local databases and runtime state
+*.db
+*.sqlite3
+roadguard.db
+
+# Dynamic runtime media
+uploads/*
+!uploads/.gitkeep
+outputs/*
+!outputs/.gitkeep
+
+# Frontend source (deployed separately to Vercel)
+frontend
+
+# Caches and temporary files
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache
+.coverage
+htmlcov
+.DS_Store
+

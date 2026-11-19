@@ -175,3 +175,12 @@ cd ..
 | Port 5173 already in use | Vite dev server already running | Vite will automatically switch to `5174` or terminate with `lsof -i :5173`. |
 | `ModuleNotFoundError` | Virtual environment not activated | Run `source .venv/bin/activate` before executing backend scripts. |
 
+---
+
+## 9. Production Cloud Deployment (Vercel & Railway)
+
+For instructions on deploying RoadGuard AI to live production (Vercel for React frontend, Railway for FastAPI & YOLOv8 backend, and persistent volume for SQLite), see the comprehensive deployment guide:
+
+👉 **[docs/deployment-guide.md](deployment-guide.md)**
+
+

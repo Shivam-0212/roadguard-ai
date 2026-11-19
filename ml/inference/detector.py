@@ -140,19 +140,22 @@ def estimate_visual_severity(
 class RoadDefectDetector:
     """Singleton-friendly detector wrapper around YOLOv8."""
 
-    def __init__(self, model_path: Optional[str] = None):
+    def __init__(self, model_path: Optional[str] = None, device: Optional[str] = None):
         self.model = None
         self.model_path = None
-        self.device = "cpu"
+        self.device = device or os.getenv("DEVICE", "cpu")
         if model_path and os.path.exists(model_path):
-            self.load(model_path)
+            self.load(model_path, device=device)
 
-    def load(self, model_path: str):
+    def load(self, model_path: str, device: Optional[str] = None):
         if not ULTRALYTICS_AVAILABLE:
             raise RuntimeError("Ultralytics library is not installed.")
 
-        # Determine best available device
-        if torch.cuda.is_available():
+        # Determine best available device unless explicitly requested
+        target_device = device or os.getenv("DEVICE")
+        if target_device:
+            self.device = target_device
+        elif torch.cuda.is_available():
             self.device = "0"
         elif hasattr(torch.backends, "mps") and torch.backends.mps.is_available():
             self.device = "mps"

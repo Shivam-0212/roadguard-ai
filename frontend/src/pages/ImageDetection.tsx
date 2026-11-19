@@ -234,7 +234,7 @@ export const ImageDetection: React.FC = () => {
                 </button>
 
                 <a
-                  href={result.annotated_image_url}
+                  href={api.getMediaUrl(result.annotated_image_url)}
                   download={`annotated_${result.filename}`}
                   className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-bold transition-colors"
                 >
@@ -246,7 +246,7 @@ export const ImageDetection: React.FC = () => {
 
             <div className="rounded-xl overflow-hidden bg-black flex items-center justify-center border border-slate-800 max-h-[550px]">
               <img
-                src={showOriginal ? result.original_image_url : result.annotated_image_url}
+                src={api.getMediaUrl(showOriginal ? result.original_image_url : result.annotated_image_url)}
                 alt="Inspection Output"
                 className="max-h-[550px] w-auto object-contain"
               />
