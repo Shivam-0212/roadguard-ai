@@ -4,7 +4,6 @@
 [![Backend: FastAPI](https://img.shields.io/badge/Backend-FastAPI%200.110+-emerald.svg)](https://fastapi.tiangolo.com)
 [![Frontend: React + Vite](https://img.shields.io/badge/Frontend-React%2018%20%2B%20TypeScript-61dafb.svg)](frontend/)
 [![Database: SQLite](https://img.shields.io/badge/Database-SQLite%203-lightgrey.svg)](https://sqlite.org)
-[![License: CC BY 4.0 / MIT](https://img.shields.io/badge/License-CC%20BY%204.0%20%2F%20MIT-brightgreen.svg)](docs/dataset-and-attribution.md)
 
 ---
 
@@ -111,6 +110,8 @@ The model loaded by the application (`artifacts/models/best.pt`) was trained and
 
 All evaluation artifacts (`evaluation_metrics.json`, `results.csv`, `results.png`, `confusion_matrix.png`) are located in `artifacts/metrics/`.
 
+> **Methodological Caveat on Dataset Splitting:** The 45.96% mAP@50 benchmark reflects evaluation on the original 80/10/10 random split (202 held-out test images) generated during the baseline training run. Post-training diagnostics identified that continuous vehicle dashcam video sequences can cause frames from the same recording burst to appear across different random partitions, introducing potential recording-level leakage. Subsequent research experiments exploring clean recording-level grouping are maintained separately in research archives and are not conflated with this baseline deployment model.
+
 ---
 
 ## 7. Quick Start & Local Execution
@@ -123,8 +124,8 @@ All evaluation artifacts (`evaluation_metrics.json`, `results.csv`, `results.png
 ### Quick Launch
 ```bash
 # Clone repository
-git clone https://github.com/<username>/Road_Defect_Detection.git
-cd Road_Defect_Detection
+git clone https://github.com/Shivam-0212/roadguard-ai.git
+cd roadguard-ai
 
 # Make scripts executable and start
 chmod +x start.sh run_backend.sh run_frontend.sh

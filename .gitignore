@@ -63,6 +63,7 @@ processed_dataset/
 leakage_resistant_dataset/
 input_data/
 archive/
+roadguard-ai/
 *.tar.gz
 
 # Do not upload raw dataset images or bulky annotations to GitHub

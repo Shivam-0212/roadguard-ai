@@ -20,8 +20,8 @@ This guide provides step-by-step instructions for installing dependencies, confi
 Clone the repository and run the automated startup script:
 
 ```bash
-git clone https://github.com/<username>/Road_Defect_Detection.git
-cd Road_Defect_Detection
+git clone https://github.com/Shivam-0212/roadguard-ai.git
+cd roadguard-ai
 
 # Make startup scripts executable
 chmod +x start.sh run_backend.sh run_frontend.sh

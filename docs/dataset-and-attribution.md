@@ -50,6 +50,8 @@ In the original model training pipeline (`notebooks/RoadGuard_AI_YOLOv8_Training
 | **Recall ($R$)** | **45.76%** | 34.88% | 30.67% | 71.74% |
 | **$F_1$-Score** | **51.75%** | 45.49% | 38.75% | 65.70% |
 
+> **Methodological Caveat on Dataset Splitting:** The 45.96% mAP@50 benchmark reflects evaluation on the original 80/10/10 random split (202 held-out test images) generated during the baseline training run. Post-training diagnostics identified that continuous vehicle dashcam video sequences can cause frames from the same recording burst to appear across different random partitions, introducing potential recording-level leakage. Subsequent research experiments exploring clean recording-level grouping are maintained separately in research archives and are not conflated with this baseline deployment model.
+
 ---
 
 ## 4. How to Obtain & Prepare the Dataset
