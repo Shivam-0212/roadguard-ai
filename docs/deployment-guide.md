@@ -73,7 +73,7 @@ Navigate to the **Variables** tab of your Railway service and add the following:
 
 > [!NOTE]
 > `PORT` is automatically injected by Railway into the container. Uvicorn binds automatically to `0.0.0.0:$PORT`.
-> The backend also has an internal CORS regex allowing all `https://*.vercel.app` domains by default.
+> The backend strictly allows only explicitly configured origins specified in `CORS_ORIGINS` (along with standard localhost origins for development). Wildcards and broad subdomain patterns are disabled for production security.
 
 ### Step 4: Generate a Public Domain
 1. In the service view, navigate to **Settings** -> **Networking** -> **Public Networking**.
@@ -175,8 +175,8 @@ If deployed on Railway's free/starter tier, containers may sleep after inactivit
 
 ### CORS Errors
 If you see CORS errors in your browser DevTools:
-1. Check that your Railway `CORS_ORIGINS` variable includes your exact Vercel domain (`https://<your-app>.vercel.app`).
-2. The FastAPI backend also includes a built-in regex (`r"^https://.*\.vercel\.app$"`) that matches all Vercel production and preview deployments automatically.
+1. Ensure your Render / Railway `CORS_ORIGINS` environment variable includes your exact deployed frontend domain (e.g. `https://<your-app>.vercel.app`).
+2. Multiple domains can be provided as a comma-separated list (e.g. `https://roadguard-ai.vercel.app,http://localhost:5173`). Wildcard `*` is disallowed for security.
 
 ### Storage Management
 - The persistent volume at `/data` retains SQLite data and inspection media.

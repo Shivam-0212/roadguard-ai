@@ -29,22 +29,35 @@ class Settings(BaseSettings):
     # Video inference settings
     VIDEO_FRAME_SAMPLE_RATE: int = int(os.getenv("VIDEO_FRAME_SAMPLE_RATE", "5"))
     
-    # CORS
-    CORS_ORIGINS: list | str = [
-        "http://localhost:5173",
-        "http://localhost:3000",
-        "http://127.0.0.1:5173",
-        "http://127.0.0.1:3000",
-        "*"
-    ]
+    # CORS: Explicitly allowed origins (no wildcard '*' allowed)
+    CORS_ORIGINS: list | str = os.getenv(
+        "CORS_ORIGINS",
+        "http://localhost:5173,http://localhost:3000,http://127.0.0.1:5173,http://127.0.0.1:3000"
+    )
 
     @property
     def cors_origins_list(self) -> list:
+        # Standard local development origins
+        local_dev_origins = [
+            "http://localhost:5173",
+            "http://localhost:3000",
+            "http://127.0.0.1:5173",
+            "http://127.0.0.1:3000"
+        ]
+        
+        parsed: list = []
         if isinstance(self.CORS_ORIGINS, list):
-            return self.CORS_ORIGINS
-        if isinstance(self.CORS_ORIGINS, str):
-            return [origin.strip() for origin in self.CORS_ORIGINS.split(",") if origin.strip()]
-        return ["*"]
+            parsed = [o.strip() for o in self.CORS_ORIGINS if isinstance(o, str) and o.strip() and o.strip() != "*"]
+        elif isinstance(self.CORS_ORIGINS, str):
+            parsed = [o.strip() for o in self.CORS_ORIGINS.split(",") if o.strip() and o.strip() != "*"]
+
+        # Merge local development origins and explicitly configured production origins
+        origins = list(local_dev_origins)
+        for origin in parsed:
+            if origin not in origins:
+                origins.append(origin)
+
+        return origins
 
     @property
     def sync_database_url(self) -> str:
