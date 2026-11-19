@@ -1,0 +1,14 @@
+# RoadGuard AI — Road Damage Detection YOLOv8 Configuration
+# Academic Course: CSE471 - Deep Learning for Computer Vision
+# Dataset: Road Damage Dataset (Potholes, Cracks and Manholes)
+
+path: /Users/shivamrai/Desktop/Road_Defect_Detection/processed_dataset  # dataset root dir
+train: images/train  # train images (relative to 'path')
+val: images/val      # val images (relative to 'path')
+test: images/test    # test images (optional, relative to 'path')
+
+# Classes
+names:
+  0: pothole
+  1: crack
+  2: manhole

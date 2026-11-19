@@ -1,0 +1,113 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Python Virtual Environments
+.venv/
+venv/
+ENV/
+env/
+
+# Node & Frontend dependencies
+node_modules/
+frontend/node_modules/
+frontend/dist/
+
+# Environment variables & secrets
+.env
+.env.local
+*.pem
+*.key
+kaggle.json
+
+# Operating System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Large Model Weights (Keep track via artifacts/models/README.md or Git LFS)
+*.pt
+*.onnx
+*.engine
+!artifacts/models/.gitkeep
+!artifacts/models/best.pt
+
+# Temporary Uploads & Processed Media
+uploads/images/*
+uploads/videos/*
+!uploads/images/.gitkeep
+!uploads/videos/.gitkeep
+outputs/images/*
+outputs/videos/*
+!outputs/images/.gitkeep
+!outputs/videos/.gitkeep
+
+# SQLite database
+*.db
+*.sqlite3
+
+# Training runs & caches
+runs/
+.pytest_cache/
+.coverage
+htmlcov/
+*.log
+
+# Large Prepared Dataset copies & Raw Datasets
+processed_dataset/
+leakage_resistant_dataset/
+input_data/
+archive/
+*.tar.gz
+
+# Do not upload raw dataset images or bulky annotations to GitHub
+input_data/dataset/images/
+input_data/dataset/labels/
+input_data/dataset/labels-YOLO/
+input_data/dataset/annotations_coco.json
+
+# Local environments and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.DS_Store
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Frontend generated files
+frontend/node_modules/
+frontend/dist/
+
+# Local application data
+roadguard.db
+*.db
+uploads/
+outputs/
+runs/
+
+# Private research archive
+archive/
+
+# Raw and processed datasets
+input_data/
+leakage_resistant_dataset/
+processed_dataset/
+
+# Unnecessary bulk artifacts
+artifacts/road_damage_colab.zip
+artifacts/reports/
+artifacts/models/*
+!artifacts/models/best.pt
+
+# Environment secrets
+.env
+!.env.example

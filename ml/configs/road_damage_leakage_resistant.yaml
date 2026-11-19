@@ -1,0 +1,8 @@
+path: /Users/shivamrai/Desktop/Road_Defect_Detection/leakage_resistant_dataset
+train: images/train
+val: images/val
+test: images/test
+names:
+  0: pothole
+  1: crack
+  2: manhole
